@@ -34,4 +34,16 @@ public class ArtiklService {
 		String pocetakNazivaMalimSlovom = pocetakNaziva.toLowerCase();
 		return artiklRepository.getByPocetak(pocetakNazivaMalimSlovom);
 	}
+	
+	public boolean existsById(int id) {
+		return getArtiklById(id).isPresent();
+	}
+	
+	public Artikl addArtikl(Artikl artikl) {
+		return artiklRepository.save(artikl);
+	}
+	
+	public void deleteArtikl(int id) {
+		artiklRepository.deleteById(id);
+	}
 }
