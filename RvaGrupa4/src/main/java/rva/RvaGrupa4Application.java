@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RvaGrupa4Application {
 
 	public static void main(String[] args) {
-		//provera poveyanosti sa BE
 		SpringApplication.run(RvaGrupa4Application.class, args);
 	}
 
