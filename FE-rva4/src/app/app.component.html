@@ -16,13 +16,13 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-button>Artikl</a>
+                    <a mat-button routerLink="/artikl">Artikl</a>
                 </mat-nav-list>
                 <mat-nav-list>
-                    <a mat-button>Dobavljač</a>
+                    <a mat-button routerLink="/dobavljac">Dobavljač</a>
                 </mat-nav-list>
                 <mat-nav-list>
-                    <a mat-button>Porudžbina</a>
+                    <a mat-button routerLink="/porudzbina">Porudžbina</a>
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-expansion-panel>
@@ -46,4 +46,5 @@
             </mat-expansion-panel>
         </mat-accordion>
     </mat-sidenav>
+    <router-outlet></router-outlet>
 </mat-sidenav-container>

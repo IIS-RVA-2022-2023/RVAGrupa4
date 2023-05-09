@@ -13,6 +13,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { AppRoutingModule } from './app-routing.module';
     MatSidenavModule, 
     MatListModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HttpClientModule,
+    MatTableModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
