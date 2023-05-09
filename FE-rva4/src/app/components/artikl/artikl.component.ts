@@ -31,4 +31,8 @@ export class ArtiklComponent {
       }
     );
   }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
 }
