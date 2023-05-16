@@ -35,12 +35,16 @@ export class ArtiklComponent {
   }
 
   public openDialog(flag: number, artikl?:Artikl): void {
-    const dialogRef = this.dialog.open(ArtiklDialogComponent, {data: artikl});
+    const dialogRef = this.dialog.open(ArtiklDialogComponent, {data: (artikl? artikl: new Artikl())});
     dialogRef.componentInstance.flagArtDialog = flag;
     dialogRef.afterClosed().subscribe(res => {if(res == 1) this.loadData()});
   }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
+  }
+
+  ngOnChanges(){
+    this.loadData();
   }
 }
