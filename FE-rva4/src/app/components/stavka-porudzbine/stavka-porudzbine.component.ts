@@ -6,6 +6,7 @@ import { StavkaPorudzbineService } from 'src/app/services/stavka-porudzbine.serv
 import { StavkaPorudzbine } from 'src/app/models/stavka-porudzbine';
 import { Porudzbina } from 'src/app/models/porudzbina';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StavkaPorudzbineDialogComponent } from '../dialogs/stavka-porudzbine-dialog/stavka-porudzbine-dialog.component';
 
 @Component({
   selector: 'app-stavka-porudzbine',
@@ -31,20 +32,24 @@ export class StavkaPorudzbineComponent implements OnInit, OnDestroy {
   }
 
   ngOnChanges(): void {
-    if(this.selektovanaPorudzbina.id) {
-       this.loadData();    }  }
-       
+    if (this.selektovanaPorudzbina.id) {
+      this.loadData();
+    }
+  }
+
   loadData() {
     this.subscription = this.stavkaPorudzbineService.getAllStavkeZaPorudzbinu(this.selektovanaPorudzbina.id)
       .subscribe({
         next: (data) => this.dataSource = data,
-        error: (error) =>  {this.snackBar.open('Porudzbina nema stavke', 'Zatvori', {
-          duration: 2500
-        }); this.dataSource =  new MatTableDataSource<StavkaPorudzbine>},
-        complete: () => console.info('complete') 
-    })
+        error: (error) => {
+          this.snackBar.open('Porudzbina nema stavke', 'Zatvori', {
+            duration: 2500
+          }); this.dataSource = new MatTableDataSource<StavkaPorudzbine>
+        },
+        complete: () => console.info('complete')
+      })
   }
- /* public openDialog(flag: number, stavkaPorudzbine?: StavkaPorudzbine) {
+  public openDialog(flag: number, stavkaPorudzbine?: StavkaPorudzbine) {
     const dialogRef = this.dialog.open(StavkaPorudzbineDialogComponent, { data: (stavkaPorudzbine ? stavkaPorudzbine : new Porudzbina()) });
     dialogRef.componentInstance.flag = flag;
     if (flag === 1) {
@@ -56,5 +61,5 @@ export class StavkaPorudzbineComponent implements OnInit, OnDestroy {
           this.loadData();
         }
       })
-  }*/
+  }
 }

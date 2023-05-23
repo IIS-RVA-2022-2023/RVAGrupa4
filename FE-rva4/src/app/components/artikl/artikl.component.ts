@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { Artikl } from 'src/app/models/artikl';
@@ -16,8 +18,8 @@ export class ArtiklComponent {
   subscription!: Subscription;
   displayedColumns = ['id', 'naziv', 'proizvodjaca', 'actions'];
   dataSourceArtikl!: MatTableDataSource<Artikl>;
-  /* @ViewChild(MatSort, {static: false}) sort!: MatSort;
-   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;*/
+  @ViewChild(MatSort, {static: false}) sort!: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;
 
   constructor(private artiklService: ArtiklService, private dialog: MatDialog) { }
 
@@ -27,10 +29,9 @@ export class ArtiklComponent {
   loadData(): void {
     this.subscription = this.artiklService.getAllArtikls().subscribe(
       data => {
-        //console.log(data);
         this.dataSourceArtikl = new MatTableDataSource(data);
-        /*this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;*/
+        this.dataSourceArtikl.sort = this.sort;
+        this.dataSourceArtikl.paginator = this.paginator;
       },
       error => {
         console.log(error.name + ' ' + error.message);
@@ -44,12 +45,12 @@ export class ArtiklComponent {
     dialogRef.afterClosed().subscribe(res => { if (res == 1) this.loadData() });
   }
 
-  /*applyFilter(filterValue: any) {
+  applyFilter(filterValue: any) {
     filterValue = filterValue.target.value
     filterValue = filterValue.trim();
     filterValue = filterValue.toLocaleLowerCase();
-    this.dataSource.filter = filterValue; //    JaBuKa    --> JaBuKa --> jabuka
-  }*/
+    this.dataSourceArtikl.filter = filterValue; //    JaBuKa    --> JaBuKa --> jabuka
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
