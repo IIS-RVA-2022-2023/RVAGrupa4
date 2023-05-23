@@ -15,6 +15,8 @@ export class DobavljacComponent {
   subscription!: Subscription;
   displayedColumns = ['id', 'naziv', 'adresa', 'kontakt', 'actions'];
   dataSource!: MatTableDataSource<Dobavljac>;
+   /* @ViewChild(MatSort, {static: false}) sort!: MatSort;
+   @ViewChild(MatPaginator, {static: false}) paginator!: MatPaginator;*/
 
   constructor(private dobavljacService: DobavljacService, private dialog: MatDialog) { }
 
@@ -26,6 +28,8 @@ export class DobavljacComponent {
       data => {
         //console.log(data);
         this.dataSource = new MatTableDataSource(data);
+        /*this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;*/
       },
       (error: Error) => {
         console.log(error.name + ' ' + error.message);
